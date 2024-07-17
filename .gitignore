@@ -9,6 +9,11 @@ export_presets.cfg
 # Ignore exported Web files
 web_exports/
 
+# Ignore unnesceary addons
+addons/Todo_manager
+addons/wakatime
+wakatime_logo.jpg*
+
 # Imported translations (automatically generated from CSV files)
 *.translation
 

@@ -16,8 +16,13 @@ func _ready() -> void:
             transform_area.connect("player_can_transform", _on_transform_area_entered)
             transform_area.connect("player_cannot_transform", _on_transform_area_exited)
 
+    $DeathZone.connect("body_entered", _on_deathzone_entered)
+
 func _on_transform_area_entered() -> void:
     player.entered_transform_area()
 
 func _on_transform_area_exited() -> void:
     player.exited_transform_area()
+
+func _on_deathzone_entered(_body: Node2D) -> void:
+    get_tree().call_deferred("reload_current_scene")
