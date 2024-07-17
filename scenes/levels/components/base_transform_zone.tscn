@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0b031r72swqv"]
+
+[ext_resource type="Texture2D" uid="uid://veyyk5bw6mx3" path="res://icon.svg" id="1_hofkf"]
+[ext_resource type="Script" path="res://scenes/levels/components/base_transform_zone.gd" id="1_qh6gn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ri8ek"]
+size = Vector2(178, 226)
+
+[node name="BaseTransformZone" type="Area2D" groups=["transform_area"]]
+script = ExtResource("1_qh6gn")
+
+[node name="ActivationArea" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ri8ek")
+debug_color = Color(0.641299, 0.508431, 0.360969, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.8, 0.254902, 0.254902, 0.568627)
+scale = Vector2(1.3125, 1.70312)
+texture = ExtResource("1_hofkf")

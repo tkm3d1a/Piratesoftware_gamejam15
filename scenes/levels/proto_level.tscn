@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtiioehkjwx5p"]
+
+[ext_resource type="PackedScene" uid="uid://bfhmbpbwqft06" path="res://scenes/characters/player/player.tscn" id="1_oy1e0"]
+[ext_resource type="Script" path="res://scenes/levels/proto_level.gd" id="1_ym05u"]
+[ext_resource type="PackedScene" uid="uid://fpeeadb06efm" path="res://scenes/levels/components/base_platform.tscn" id="2_gad7o"]
+[ext_resource type="PackedScene" uid="uid://c0b031r72swqv" path="res://scenes/levels/components/base_transform_zone.tscn" id="3_7gadf"]
+
+[node name="ProtoLevel" type="Node2D" node_paths=PackedStringArray("transform_areas")]
+script = ExtResource("1_ym05u")
+transform_areas = [NodePath("BaseTransformZone")]
+
+[node name="Player" parent="." instance=ExtResource("1_oy1e0")]
+position = Vector2(561, 469)
+
+[node name="BasePlatform" parent="." instance=ExtResource("2_gad7o")]
+position = Vector2(563, 621)
+
+[node name="BaseTransformZone" parent="." instance=ExtResource("3_7gadf")]
+position = Vector2(997, 488)
