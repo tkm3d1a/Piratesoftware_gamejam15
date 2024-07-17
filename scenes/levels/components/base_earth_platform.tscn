@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://4amh0k71bqsn"]
+
+[ext_resource type="Script" path="res://scenes/levels/components/base_earth_platform.gd" id="1_flnjw"]
+[ext_resource type="Texture2D" uid="uid://veyyk5bw6mx3" path="res://icon.svg" id="1_huvac"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ldnw"]
+size = Vector2(302, 22)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s3dem"]
+radius = 38.0
+height = 314.0
+
+[node name="BaseEarthPlatform" type="StaticBody2D"]
+script = ExtResource("1_flnjw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.596155, 0.282485, 0.144367, 1)
+scale = Vector2(2.35938, 0.171875)
+texture = ExtResource("1_huvac")
+
+[node name="PlatformBody" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0ldnw")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_s3dem")
+debug_color = Color(0.587684, 0.547972, 0.072196, 0.42)

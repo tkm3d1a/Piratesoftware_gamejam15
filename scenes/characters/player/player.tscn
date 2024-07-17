@@ -1,10 +1,84 @@
-[gd_scene load_steps=4 format=3 uid="uid://bfhmbpbwqft06"]
+[gd_scene load_steps=13 format=3 uid="uid://bfhmbpbwqft06"]
 
 [ext_resource type="Script" path="res://scenes/characters/player/player.gd" id="1_mgxym"]
 [ext_resource type="Texture2D" uid="uid://veyyk5bw6mx3" path="res://icon.svg" id="1_w27jm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7tmvi"]
 size = Vector2(130, 132)
+
+[sub_resource type="Animation" id="Animation_d36ww"]
+resource_name = "idle"
+
+[sub_resource type="Animation" id="Animation_u57uv"]
+resource_name = "move"
+
+[sub_resource type="Animation" id="Animation_d52k1"]
+resource_name = "jump"
+
+[sub_resource type="Animation" id="Animation_7eaxf"]
+resource_name = "fall"
+
+[sub_resource type="Animation" id="Animation_b2g7q"]
+resource_name = "transform_earth"
+length = 0.2
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.8, 1.2), Vector2(0.9, 0.8), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.03, 0.14, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.584314, 0.231373, 0.027451, 0.647059), Color(0.584314, 0.231373, 0.027451, 0.647059), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:current_transform_state")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_2j10c"]
+resource_name = "transform_wind"
+
+[sub_resource type="Animation" id="Animation_wxk1e"]
+resource_name = "transform_water"
+
+[sub_resource type="Animation" id="Animation_wrqnc"]
+resource_name = "transform_fire"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e66e3"]
+_data = {
+"fall": SubResource("Animation_7eaxf"),
+"idle": SubResource("Animation_d36ww"),
+"jump": SubResource("Animation_d52k1"),
+"move": SubResource("Animation_u57uv"),
+"transform_earth": SubResource("Animation_b2g7q"),
+"transform_fire": SubResource("Animation_wrqnc"),
+"transform_water": SubResource("Animation_wxk1e"),
+"transform_wind": SubResource("Animation_2j10c")
+}
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_mgxym")
@@ -16,6 +90,9 @@ texture = ExtResource("1_w27jm")
 shape = SubResource("RectangleShape2D_7tmvi")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_e66e3")
+}
 
 [node name="StateMachine" type="Node" parent="."]
 
