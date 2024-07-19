@@ -8,7 +8,7 @@ size = Vector2(302, 22)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s3dem"]
 radius = 38.0
-height = 314.0
+height = 338.0
 
 [node name="BaseEarthPlatform" type="StaticBody2D"]
 script = ExtResource("1_flnjw")

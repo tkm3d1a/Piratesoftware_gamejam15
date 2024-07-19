@@ -1,79 +1,127 @@
-[gd_scene load_steps=13 format=3 uid="uid://bfhmbpbwqft06"]
+[gd_scene load_steps=21 format=3 uid="uid://bfhmbpbwqft06"]
 
-[ext_resource type="Script" path="res://scenes/characters/player/player.gd" id="1_mgxym"]
-[ext_resource type="Texture2D" uid="uid://veyyk5bw6mx3" path="res://icon.svg" id="1_w27jm"]
+[ext_resource type="Script" path="res://scripts/characters/player.gd" id="1_j5j4t"]
+[ext_resource type="Texture2D" uid="uid://jcasxtednocm" path="res://assets/art/Main_char.png" id="2_6ts8v"]
+[ext_resource type="Texture2D" uid="uid://c0l32tgrvcl60" path="res://assets/art/earth_sprites.png" id="3_5rary"]
+[ext_resource type="Script" path="res://scripts/utility/state_machine/state_machine.gd" id="3_vx4s3"]
+[ext_resource type="Script" path="res://scripts/characters/player_states/idle.gd" id="4_m2mrs"]
+[ext_resource type="Script" path="res://scripts/characters/player_states/jump.gd" id="5_32xg3"]
+[ext_resource type="Script" path="res://scripts/characters/player_states/move.gd" id="6_y10j3"]
+[ext_resource type="Script" path="res://scripts/characters/player_states/fall.gd" id="7_m2wyd"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7tmvi"]
-size = Vector2(130, 132)
-
-[sub_resource type="Animation" id="Animation_d36ww"]
-resource_name = "idle"
-
-[sub_resource type="Animation" id="Animation_u57uv"]
-resource_name = "move"
-
-[sub_resource type="Animation" id="Animation_d52k1"]
-resource_name = "jump"
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_her8j"]
+size = Vector2(18, 29)
 
 [sub_resource type="Animation" id="Animation_7eaxf"]
 resource_name = "fall"
+length = 0.10001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [17]
+}
+
+[sub_resource type="Animation" id="Animation_d36ww"]
+resource_name = "idle"
+length = 0.500013
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_d52k1"]
+resource_name = "jump"
+length = 0.10001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [18]
+}
+
+[sub_resource type="Animation" id="Animation_u57uv"]
+resource_name = "move"
 
 [sub_resource type="Animation" id="Animation_b2g7q"]
 resource_name = "transform_earth"
 length = 0.2
 step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0.8, 1.2), Vector2(0.9, 0.8), Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:modulate")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.03, 0.14, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.584314, 0.231373, 0.027451, 0.647059), Color(0.584314, 0.231373, 0.027451, 0.647059), Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:current_transform_state")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.1),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-
-[sub_resource type="Animation" id="Animation_2j10c"]
-resource_name = "transform_wind"
-
-[sub_resource type="Animation" id="Animation_wxk1e"]
-resource_name = "transform_water"
 
 [sub_resource type="Animation" id="Animation_wrqnc"]
 resource_name = "transform_fire"
 
+[sub_resource type="Animation" id="Animation_wxk1e"]
+resource_name = "transform_water"
+
+[sub_resource type="Animation" id="Animation_2j10c"]
+resource_name = "transform_wind"
+
+[sub_resource type="Animation" id="Animation_jabcs"]
+resource_name = "run"
+length = 0.380957
+loop_mode = 1
+step = 0.047619
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.047619, 0.0952381, 0.142857, 0.190476, 0.238095, 0.285714, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [9, 10, 11, 12, 13, 14, 15, 16]
+}
+
+[sub_resource type="Animation" id="Animation_l6ll7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e66e3"]
 _data = {
+"RESET": SubResource("Animation_l6ll7"),
 "fall": SubResource("Animation_7eaxf"),
 "idle": SubResource("Animation_d36ww"),
 "jump": SubResource("Animation_d52k1"),
 "move": SubResource("Animation_u57uv"),
+"run": SubResource("Animation_jabcs"),
 "transform_earth": SubResource("Animation_b2g7q"),
 "transform_fire": SubResource("Animation_wrqnc"),
 "transform_water": SubResource("Animation_wxk1e"),
@@ -81,19 +129,71 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-script = ExtResource("1_mgxym")
+script = ExtResource("1_j5j4t")
+base_sprites = ExtResource("2_6ts8v")
+earth_sprites = ExtResource("3_5rary")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_w27jm")
+texture_filter = 1
+position = Vector2(0, -19)
+texture = ExtResource("2_6ts8v")
+hframes = 19
+frame = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_7tmvi")
+position = Vector2(0, -14.5)
+shape = SubResource("RectangleShape2D_her8j")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_e66e3")
 }
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("3_vx4s3")
+starting_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("move_state", "jump_state", "fall_state")]
+script = ExtResource("4_m2mrs")
+move_state = NodePath("../Move")
+jump_state = NodePath("../Jump")
+fall_state = NodePath("../Fall")
+animation_name = "idle"
+
+[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("move_state", "idle_state", "fall_state")]
+script = ExtResource("5_32xg3")
+move_state = NodePath("../Move")
+idle_state = NodePath("../Idle")
+fall_state = NodePath("../Fall")
+animation_name = "jump"
+
+[node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "jump_state", "fall_state")]
+script = ExtResource("6_y10j3")
+idle_state = NodePath("../Idle")
+jump_state = NodePath("../Jump")
+fall_state = NodePath("../Fall")
+animation_name = "run"
+
+[node name="Fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("move_state", "idle_state")]
+script = ExtResource("7_m2wyd")
+move_state = NodePath("../Move")
+idle_state = NodePath("../Idle")
+animation_name = "fall"
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="DEBUG_state" type="Label" parent="."]
+offset_left = -29.0
+offset_top = -59.0
+offset_right = 25.0
+offset_bottom = -36.0
+theme_override_font_sizes/font_size = 10
+text = "State: <<>>"
+
+[node name="DEBUG_transform" type="Label" parent="."]
+offset_left = -35.0
+offset_top = -49.0
+offset_right = 33.0
+offset_bottom = -26.0
+theme_override_font_sizes/font_size = 10
+text = "Element: <<>>"
