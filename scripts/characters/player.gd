@@ -2,8 +2,8 @@ class_name Player extends CharacterBody2D
 
 @export_group("Movement")
 @export var speed := 300.0
-@export var jump_velocity := 400.0
-@export var jump_buffer_timer := 0.1
+@export var jump_velocity := 600.0
+@export var jump_buffer_timer := 0.15
 @export var coyote_wait_timer := 0.1
 
 @export_group("Transformations")
@@ -18,6 +18,7 @@ class_name Player extends CharacterBody2D
 @onready var anim_player_node: AnimationPlayer = get_node("AnimationPlayer")
 @onready var sprite_node: Sprite2D = get_node("Sprite2D")
 @onready var coyote_timer_node: Timer = get_node("CoyoteTimer")
+@onready var jump_buffer_timer_node: Timer = get_node("JumpBufferTimer")
 
 var jump_buffer_active := false
 var coyote_buffer_active := false
@@ -49,6 +50,10 @@ func _ready() -> void:
 	d_update_c_label(coyote_buffer_active)
 	d_update_jb_label(jump_buffer_active)
 	state_machine.init(self)
+
+	jump_buffer_timer_node.wait_time = jump_buffer_timer
+	jump_buffer_timer_node.one_shot = true
+	jump_buffer_timer_node.timeout.connect(clear_jump_buffer)
 
 	coyote_timer_node.wait_time = coyote_wait_timer
 	coyote_timer_node.one_shot = true
@@ -95,12 +100,21 @@ func transform(to_state: Transform_State) -> void:
 
 func start_coyote_timer() -> void:
 	coyote_buffer_active = true
-	d_update_c_label(coyote_buffer_active)
 	coyote_timer_node.start()
+	d_update_c_label(coyote_buffer_active)
 
 func on_coyote_timer_timeout() -> void:
 	coyote_buffer_active = false
 	d_update_c_label(coyote_buffer_active)
+
+func start_jump_buffer() -> void:
+	jump_buffer_active = true
+	jump_buffer_timer_node.start()
+	d_update_jb_label(jump_buffer_active)
+
+func clear_jump_buffer() -> void:
+	jump_buffer_active = false
+	d_update_jb_label(jump_buffer_active)
 
 ##############################################################
 # Debug only functions

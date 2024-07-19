@@ -32,6 +32,10 @@ func process_frame(_delta: float) -> State:
 	return null
 
 func process_input(_event: InputEvent) -> State:
+	if Input.is_action_just_pressed("jump"):
+		if not parent.jump_buffer_active:
+			parent.start_jump_buffer()
+
 	if Input.is_action_just_pressed("transform_earth") and parent.can_transform:
 		parent.transform(parent.Transform_State.EARTH)
 	

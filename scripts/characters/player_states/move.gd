@@ -20,6 +20,9 @@ func process_physics(_delta: float) -> State:
 		parent.start_coyote_timer()
 		if not parent.coyote_buffer_active:
 			return fall_state
+
+	if parent.jump_buffer_active and parent.is_on_floor():
+		return jump()
 	
 	parent.velocity.x = movement
 	parent.sprite_node.flip_h = movement < 0
@@ -40,3 +43,7 @@ func process_input(_event: InputEvent) -> State:
 		parent.transform(parent.Transform_State.BASE)
 	
 	return null
+
+func jump() -> State:
+	parent.clear_jump_buffer()
+	return jump_state

@@ -17,6 +17,9 @@ func process_physics(delta: float) -> State:
 
 	if not parent.is_on_floor():
 		return fall_state
+
+	if parent.jump_buffer_active and parent.is_on_floor():
+		return jump()
 	
 	return null
 
@@ -33,3 +36,7 @@ func process_input(_event: InputEvent) -> State:
 		parent.transform(parent.Transform_State.BASE)
 	
 	return null
+
+func jump() -> State:
+	parent.clear_jump_buffer()
+	return jump_state

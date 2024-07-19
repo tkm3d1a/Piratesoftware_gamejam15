@@ -184,6 +184,8 @@ animation_name = "fall"
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 
+[node name="JumpBufferTimer" type="Timer" parent="."]
+
 [node name="DEBUG_transform" type="Label" parent="."]
 offset_left = -35.0
 offset_top = -49.0
