@@ -19,9 +19,9 @@ func process_physics(delta: float) -> State:
 		return fall_state
 	
 	return null
-	
+
 func process_input(_event: InputEvent) -> State:
-	if Input.is_action_just_pressed("jump") and parent.is_on_floor():
+	if Input.is_action_just_pressed("jump") and (parent.is_on_floor() or parent.can_jump):
 		return jump_state
 	if Input.is_action_just_pressed("move_left") or Input.is_action_just_pressed("move_right"):
 		return move_state

@@ -12,6 +12,21 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_her8j"]
 size = Vector2(18, 29)
 
+[sub_resource type="Animation" id="Animation_l6ll7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
 [sub_resource type="Animation" id="Animation_7eaxf"]
 resource_name = "fall"
 length = 0.10001
@@ -67,20 +82,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_u57uv"]
 resource_name = "move"
 
-[sub_resource type="Animation" id="Animation_b2g7q"]
-resource_name = "transform_earth"
-length = 0.2
-step = 0.01
-
-[sub_resource type="Animation" id="Animation_wrqnc"]
-resource_name = "transform_fire"
-
-[sub_resource type="Animation" id="Animation_wxk1e"]
-resource_name = "transform_water"
-
-[sub_resource type="Animation" id="Animation_2j10c"]
-resource_name = "transform_wind"
-
 [sub_resource type="Animation" id="Animation_jabcs"]
 resource_name = "run"
 length = 0.380957
@@ -99,20 +100,19 @@ tracks/0/keys = {
 "values": [9, 10, 11, 12, 13, 14, 15, 16]
 }
 
-[sub_resource type="Animation" id="Animation_l6ll7"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [8]
-}
+[sub_resource type="Animation" id="Animation_b2g7q"]
+resource_name = "transform_earth"
+length = 0.2
+step = 0.01
+
+[sub_resource type="Animation" id="Animation_wrqnc"]
+resource_name = "transform_fire"
+
+[sub_resource type="Animation" id="Animation_wxk1e"]
+resource_name = "transform_water"
+
+[sub_resource type="Animation" id="Animation_2j10c"]
+resource_name = "transform_wind"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e66e3"]
 _data = {
@@ -182,13 +182,7 @@ animation_name = "fall"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="DEBUG_state" type="Label" parent="."]
-offset_left = -29.0
-offset_top = -59.0
-offset_right = 25.0
-offset_bottom = -36.0
-theme_override_font_sizes/font_size = 10
-text = "State: <<>>"
+[node name="CoyoteTimer" type="Timer" parent="."]
 
 [node name="DEBUG_transform" type="Label" parent="."]
 offset_left = -35.0
@@ -197,3 +191,27 @@ offset_right = 33.0
 offset_bottom = -26.0
 theme_override_font_sizes/font_size = 10
 text = "Element: <<>>"
+
+[node name="DEBUG_state" type="Label" parent="."]
+offset_left = -29.0
+offset_top = -60.0
+offset_right = 25.0
+offset_bottom = -37.0
+theme_override_font_sizes/font_size = 10
+text = "State: <<>>"
+
+[node name="DEBUG_coyote" type="Label" parent="."]
+offset_left = -33.0
+offset_top = -73.0
+offset_right = 29.0
+offset_bottom = -50.0
+theme_override_font_sizes/font_size = 10
+text = "Coyote: <<>>"
+
+[node name="DEBUG_jump_buffer" type="Label" parent="."]
+offset_left = -44.0
+offset_top = -86.0
+offset_right = 43.0
+offset_bottom = -63.0
+theme_override_font_sizes/font_size = 10
+text = "Jump Buffer: <<>>"

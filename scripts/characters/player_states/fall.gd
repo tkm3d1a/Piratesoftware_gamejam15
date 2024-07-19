@@ -5,9 +5,11 @@ class_name Fall extends State
 
 func enter() -> void:
 	super()
+	parent.can_jump = false
 
 func exit() -> void:
 	super()
+	parent.can_jump = true
 
 func process_physics(delta: float) -> State:
 	parent.velocity.y += gravity * delta
