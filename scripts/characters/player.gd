@@ -99,6 +99,7 @@ func transform(to_state: Transform_State) -> void:
 			print("Default transform match case")
 
 func start_coyote_timer() -> void:
+	#FIXME: Issue with coyote timer found in testing - timer seems to not start in some situations - seems to be while holding move after leaving the edge - timer is not going away and you can continue to walk until movement is released
 	coyote_buffer_active = true
 	coyote_timer_node.start()
 	d_update_c_label(coyote_buffer_active)
