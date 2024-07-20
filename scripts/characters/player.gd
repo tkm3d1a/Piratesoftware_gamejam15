@@ -26,6 +26,11 @@ var can_jump := true
 var can_transform := true
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+const EARTH_MASK_BIT := 3
+const WIND_MASK_BIT := 4
+const WATER_MASK_BIT := 5
+const FIRE_MASK_BIT := 6
+
 # Debug things
 @onready var DEBUG_state_label: Label = get_node("DEBUG_state")
 var base_state_string: String = "State: "
@@ -85,9 +90,12 @@ func transform(to_state: Transform_State) -> void:
 	if to_state == current_transform_state:
 		return
 
+	reset_collision_mask_layers()
+
 	match to_state:
 		Transform_State.EARTH:
 			sprite_node.texture = earth_sprites
+			set_collision_mask_value(EARTH_MASK_BIT, true)
 			# can_transform = false
 			current_transform_state = Transform_State.EARTH
 			d_update_transform_label(Transform_State.keys()[current_transform_state])
@@ -97,6 +105,12 @@ func transform(to_state: Transform_State) -> void:
 			d_update_transform_label(Transform_State.keys()[current_transform_state])
 		_:
 			print("Default transform match case")
+
+func reset_collision_mask_layers() -> void:
+	set_collision_mask_value(EARTH_MASK_BIT, false)
+	set_collision_mask_value(WIND_MASK_BIT, false)
+	set_collision_mask_value(WATER_MASK_BIT, false)
+	set_collision_mask_value(FIRE_MASK_BIT, false)
 
 func start_coyote_timer() -> void:
 	#FIXME: Issue with coyote timer found in testing - timer seems to not start in some situations - seems to be while holding move after leaving the edge - timer is not going away and you can continue to walk until movement is released
