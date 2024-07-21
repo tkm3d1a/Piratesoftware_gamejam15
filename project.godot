@@ -15,6 +15,11 @@ run/main_scene="res://scenes/levels/proto_level.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+game_manager="*res://scripts/autoloads/game_manager.gd"
+level_manager="*res://scripts/autoloads/level_manager.gd"
+
 [display]
 
 window/size/always_on_top=true
@@ -22,6 +27,14 @@ window/size/always_on_top=true
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/wakatime/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://assets/": "orange",
+"res://scenes/": "green",
+"res://scripts/": "purple"
+}
 
 [input]
 

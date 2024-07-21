@@ -1,0 +1,97 @@
+[gd_scene load_steps=5 format=3 uid="uid://rshgfogh1xia"]
+
+[ext_resource type="Script" path="res://scripts/ui/start_menu.gd" id="1_5d7k2"]
+[ext_resource type="PackedScene" uid="uid://bj7xln7o04fve" path="res://scenes/ui/common/bg.tscn" id="2_8ye6u"]
+[ext_resource type="PackedScene" uid="uid://bfhmbpbwqft06" path="res://scenes/characters/player/player.tscn" id="3_0j1wg"]
+[ext_resource type="PackedScene" uid="uid://c8fj0r2q60mc" path="res://scenes/ui/common/game_title.tscn" id="3_20xpc"]
+
+[node name="StartMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5d7k2")
+start_level = "level_01"
+level_select = "level_select"
+base_player = ExtResource("3_0j1wg")
+
+[node name="bg" parent="." instance=ExtResource("2_8ye6u")]
+layout_mode = 1
+
+[node name="GameTitle" parent="." instance=ExtResource("3_20xpc")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -386.0
+offset_top = -146.0
+offset_right = 100.0
+offset_bottom = -79.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartGame" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.0
+offset_top = -88.0
+offset_right = 28.0
+offset_bottom = -57.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "START"
+
+[node name="LevelSelect" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = -48.0
+offset_right = 56.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "LEVEL SELECT"
+
+[node name="Settings" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -6.0
+offset_right = 41.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "SETTINGS
+"
+
+[node name="QuitGame" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.5
+offset_top = 36.0
+offset_right = 23.5
+offset_bottom = 67.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "QUIT
+"
