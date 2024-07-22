@@ -20,6 +20,10 @@ layout_mode = 1
 [node name="GameTitle" parent="." instance=ExtResource("2_obkdr")]
 layout_mode = 1
 anchors_preset = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 486.0
+offset_bottom = 67.0
 
 [node name="ScreenTitle" type="Label" parent="."]
 modulate = Color(0.908534, 0.737835, 0.531013, 1)

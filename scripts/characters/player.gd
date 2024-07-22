@@ -99,6 +99,24 @@ func transform(to_state: Transform_State) -> void:
 			# can_transform = false
 			current_transform_state = Transform_State.EARTH
 			d_update_transform_label(Transform_State.keys()[current_transform_state])
+		Transform_State.WIND:
+			sprite_node.texture = wind_sprites
+			set_collision_mask_value(WIND_MASK_BIT, true)
+			# can_transform = false
+			current_transform_state = Transform_State.WIND
+			d_update_transform_label(Transform_State.keys()[current_transform_state])
+		Transform_State.WATER:
+			sprite_node.texture = water_sprites
+			set_collision_mask_value(WATER_MASK_BIT, true)
+			# can_transform = false
+			current_transform_state = Transform_State.WATER
+			d_update_transform_label(Transform_State.keys()[current_transform_state])
+		Transform_State.FIRE:
+			sprite_node.texture = fire_sprites
+			set_collision_mask_value(FIRE_MASK_BIT, true)
+			# can_transform = false
+			current_transform_state = Transform_State.FIRE
+			d_update_transform_label(Transform_State.keys()[current_transform_state])
 		Transform_State.BASE:
 			sprite_node.texture = base_sprites
 			current_transform_state = Transform_State.BASE
@@ -114,8 +132,9 @@ func reset_collision_mask_layers() -> void:
 
 func start_coyote_timer() -> void:
 	#FIXME: Issue with coyote timer found in testing - timer seems to not start in some situations - seems to be while holding move after leaving the edge - timer is not going away and you can continue to walk until movement is released
+	# it looks like possibly in the move state we never get to see the timer timeout?
 	coyote_buffer_active = true
-	coyote_timer_node.start()
+	coyote_timer_node.call_deferred("start")
 	d_update_c_label(coyote_buffer_active)
 
 func on_coyote_timer_timeout() -> void:
