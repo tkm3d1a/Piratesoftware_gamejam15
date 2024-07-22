@@ -1,21 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://cyvbquuov0mr1"]
+[gd_scene load_steps=4 format=3 uid="uid://cyvbquuov0mr1"]
 
+[ext_resource type="Script" path="res://scripts/ui/pause_screen.gd" id="1_plv7l"]
 [ext_resource type="Theme" uid="uid://8wb783ey1y5n" path="res://assets/themes/default_theme.tres" id="1_vkx1k"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fvh7s"]
-bg_color = Color(0.370974, 0.00154866, 0.631857, 0.196078)
+bg_color = Color(0.372549, 0, 0.631373, 0.443137)
 corner_radius_top_left = 40
 corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 
-[node name="PauseScreen" type="Control"]
+[node name="PauseScreen" type="Control" groups=["pause"]]
+process_mode = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_plv7l")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -39,7 +42,7 @@ theme = ExtResource("1_vkx1k")
 theme_override_font_sizes/font_size = 28
 text = "PAUSED"
 
-[node name="Button" type="Button" parent="Panel"]
+[node name="ResumeButton" type="Button" parent="Panel"]
 layout_mode = 0
 offset_left = 72.0
 offset_top = 300.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bfhmbpbwqft06"]
+[gd_scene load_steps=25 format=3 uid="uid://bfhmbpbwqft06"]
 
 [ext_resource type="Script" path="res://scripts/characters/player.gd" id="1_j5j4t"]
 [ext_resource type="Texture2D" uid="uid://jcasxtednocm" path="res://assets/art/character/Main_char.png" id="2_nhdr0"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://0ydtljb7tcf" path="res://assets/art/character/fire_sprites.png" id="6_w6hdk"]
 [ext_resource type="Script" path="res://scripts/characters/player_states/move.gd" id="6_y10j3"]
 [ext_resource type="Script" path="res://scripts/characters/player_states/fall.gd" id="7_m2wyd"]
+[ext_resource type="PackedScene" uid="uid://cyvbquuov0mr1" path="res://scenes/ui/pause_screen.tscn" id="12_8qjiu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_her8j"]
 size = Vector2(18, 29)
@@ -226,3 +227,8 @@ offset_right = 43.0
 offset_bottom = -63.0
 theme_override_font_sizes/font_size = 10
 text = "Jump Buffer: <<>>"
+
+[node name="PauseScreen" parent="." instance=ExtResource("12_8qjiu")]
+visible = false
+offset_top = -323.0
+offset_bottom = -323.0

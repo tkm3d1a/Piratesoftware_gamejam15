@@ -36,6 +36,9 @@ func process_frame(_delta: float) -> State:
 	return null
 
 func process_input(_event: InputEvent) -> State:
+	if Input.is_action_just_pressed("pause"):
+		level_manager.on_pause_pressed()
+
 	if parent.can_transform:
 		if Input.is_action_just_pressed("transform_element"):
 			parent.transform()
