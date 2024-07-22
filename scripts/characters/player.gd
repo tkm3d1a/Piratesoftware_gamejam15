@@ -7,6 +7,7 @@ class_name Player extends CharacterBody2D
 @export var coyote_wait_frames := 4
 
 @export_group("Transformations")
+@export var can_transform := true
 @export var current_transform_state: Transform_State = Transform_State.BASE
 @export var base_sprites: Texture2D
 @export var earth_sprites: Texture2D
@@ -24,7 +25,6 @@ var jump_buffer_active := false
 var coyote_buffer_active := false
 var last_floor_status := false
 var can_jump := true
-var can_transform := true
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 const EARTH_MASK_BIT := 3

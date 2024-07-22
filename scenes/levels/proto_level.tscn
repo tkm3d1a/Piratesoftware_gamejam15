@@ -27,6 +27,7 @@ position = Vector2(814, 345)
 z_index = 4
 y_sort_enabled = true
 position = Vector2(561, 469)
+can_transform = false
 
 [node name="DeathZone" type="Area2D" parent="."]
 position = Vector2(820, 1159)
