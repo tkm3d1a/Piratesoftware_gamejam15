@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyvbquuov0mr1"]
+
+[ext_resource type="Theme" uid="uid://8wb783ey1y5n" path="res://assets/themes/default_theme.tres" id="1_vkx1k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fvh7s"]
+bg_color = Color(0.370974, 0.00154866, 0.631857, 0.196078)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[node name="PauseScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -120.0
+offset_top = 100.0
+offset_right = 120.0
+offset_bottom = 500.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fvh7s")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 50.0
+offset_right = 182.0
+offset_bottom = 86.0
+theme = ExtResource("1_vkx1k")
+theme_override_font_sizes/font_size = 28
+text = "PAUSED"
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 300.0
+offset_right = 168.0
+offset_bottom = 334.0
+theme = ExtResource("1_vkx1k")
+text = "Resume"

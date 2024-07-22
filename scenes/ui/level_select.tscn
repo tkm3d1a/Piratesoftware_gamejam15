@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://v7j8ox0vg50e"]
+[gd_scene load_steps=5 format=3 uid="uid://v7j8ox0vg50e"]
 
 [ext_resource type="Script" path="res://scripts/ui/level_select.gd" id="1_omfty"]
 [ext_resource type="PackedScene" uid="uid://bj7xln7o04fve" path="res://scenes/ui/common/bg.tscn" id="1_tts2a"]
+[ext_resource type="Theme" uid="uid://8wb783ey1y5n" path="res://assets/themes/default_theme.tres" id="1_wrix1"]
 [ext_resource type="PackedScene" uid="uid://c8fj0r2q60mc" path="res://scenes/ui/common/game_title.tscn" id="2_obkdr"]
 
 [node name="LevelSelect" type="Control"]
@@ -11,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_wrix1")
 script = ExtResource("1_omfty")
 start_menu = "start_menu"
 
@@ -19,7 +21,10 @@ layout_mode = 1
 
 [node name="GameTitle" parent="." instance=ExtResource("2_obkdr")]
 layout_mode = 1
-anchors_preset = 0
+anchor_left = 0.0607639
+anchor_top = 0.28858
+anchor_right = 0.180556
+anchor_bottom = 0.28858
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 486.0

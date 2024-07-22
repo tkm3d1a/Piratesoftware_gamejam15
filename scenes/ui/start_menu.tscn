@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://rshgfogh1xia"]
+[gd_scene load_steps=6 format=3 uid="uid://rshgfogh1xia"]
 
+[ext_resource type="Theme" uid="uid://8wb783ey1y5n" path="res://assets/themes/default_theme.tres" id="1_4u3wk"]
 [ext_resource type="Script" path="res://scripts/ui/start_menu.gd" id="1_5d7k2"]
 [ext_resource type="PackedScene" uid="uid://bj7xln7o04fve" path="res://scenes/ui/common/bg.tscn" id="2_8ye6u"]
 [ext_resource type="PackedScene" uid="uid://bfhmbpbwqft06" path="res://scenes/characters/player/player.tscn" id="3_0j1wg"]
@@ -12,6 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_4u3wk")
 script = ExtResource("1_5d7k2")
 start_level = "level_01"
 level_select = "level_select"

@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://8wb783ey1y5n"]
+
+[ext_resource type="FontFile" uid="uid://d32dr3a2ihe2b" path="res://assets/fonts/Silkscreen-Regular.ttf" id="1_2cuav"]
+
+[resource]
+default_font = ExtResource("1_2cuav")
+Button/colors/font_hover_color = Color(0.981952, 0.590438, 0.99002, 1)
+Button/colors/font_outline_color = Color(0.7376, 0.234088, 0.956823, 1)
+Button/constants/outline_size = 3
+Button/font_sizes/font_size = 20
+Label/fonts/font = ExtResource("1_2cuav")
