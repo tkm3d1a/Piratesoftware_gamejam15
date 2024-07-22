@@ -3,8 +3,8 @@ class_name Player extends CharacterBody2D
 @export_group("Movement")
 @export var speed := 300.0
 @export var jump_velocity := 600.0
-@export var jump_buffer_timer := 0.15
-@export var coyote_wait_timer := 0.1
+@export var jump_buffer_frames := 6
+@export var coyote_wait_frames := 4
 
 @export_group("Transformations")
 @export var current_transform_state: Transform_State = Transform_State.BASE
@@ -22,6 +22,7 @@ class_name Player extends CharacterBody2D
 
 var jump_buffer_active := false
 var coyote_buffer_active := false
+var last_floor_status := false
 var can_jump := true
 var can_transform := true
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -56,12 +57,12 @@ func _ready() -> void:
 	d_update_jb_label(jump_buffer_active)
 	state_machine.init(self)
 
-	jump_buffer_timer_node.wait_time = jump_buffer_timer
-	jump_buffer_timer_node.one_shot = true
+	jump_buffer_timer_node.wait_time = jump_buffer_frames / 60.0
+	# jump_buffer_timer_node.one_shot = true
 	jump_buffer_timer_node.timeout.connect(clear_jump_buffer)
 
-	coyote_timer_node.wait_time = coyote_wait_timer
-	coyote_timer_node.one_shot = true
+	coyote_timer_node.wait_time = coyote_wait_frames / 60.0
+	# coyote_timer_node.one_shot = true
 	coyote_timer_node.timeout.connect(on_coyote_timer_timeout)
 
 func _physics_process(delta: float) -> void:
@@ -131,10 +132,8 @@ func reset_collision_mask_layers() -> void:
 	set_collision_mask_value(FIRE_MASK_BIT, false)
 
 func start_coyote_timer() -> void:
-	#FIXME: Issue with coyote timer found in testing - timer seems to not start in some situations - seems to be while holding move after leaving the edge - timer is not going away and you can continue to walk until movement is released
-	# it looks like possibly in the move state we never get to see the timer timeout?
 	coyote_buffer_active = true
-	coyote_timer_node.call_deferred("start")
+	coyote_timer_node.start()
 	d_update_c_label(coyote_buffer_active)
 
 func on_coyote_timer_timeout() -> void:

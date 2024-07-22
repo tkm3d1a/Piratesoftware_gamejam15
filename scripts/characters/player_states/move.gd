@@ -4,6 +4,8 @@ class_name Move extends State
 @export var jump_state: State
 @export var fall_state: State
 
+var last_floor = false
+
 func enter() -> void:
 	super()
 
@@ -15,9 +17,9 @@ func process_physics(_delta: float) -> State:
 
 	if movement == 0:
 		return idle_state
-	
 	if not parent.is_on_floor():
-		parent.start_coyote_timer()
+		if parent.last_floor_status: # makes sure we are only starting the timer the frame after being on the floor
+			parent.start_coyote_timer()
 		if not parent.coyote_buffer_active:
 			return fall_state
 
@@ -26,6 +28,7 @@ func process_physics(_delta: float) -> State:
 	
 	parent.velocity.x = movement
 	parent.sprite_node.flip_h = movement < 0
+	parent.last_floor_status = parent.is_on_floor() # need to reset the 'last floor' BEFORE moving the character
 	parent.move_and_slide()
 	return null
 

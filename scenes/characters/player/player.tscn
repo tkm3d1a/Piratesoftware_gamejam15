@@ -190,8 +190,10 @@ animation_name = "fall"
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="CoyoteTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="JumpBufferTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="DEBUG_transform" type="Label" parent="."]
 offset_left = -35.0
