@@ -3,8 +3,8 @@ class_name Player extends CharacterBody2D
 @export_group("Movement")
 @export var speed := 300.0
 @export var jump_velocity := 600.0
-@export var jump_buffer_frames := 6
-@export var coyote_wait_frames := 4
+@export var jump_buffer_frames := 4
+@export var coyote_wait_frames := 2
 
 @export_group("Transformations")
 @export var can_transform := true
@@ -25,6 +25,7 @@ var jump_buffer_active := false
 var coyote_buffer_active := false
 var last_floor_status := false
 var can_jump := true
+var can_transform_to := "BASE"
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 const EARTH_MASK_BIT := 3
@@ -81,42 +82,49 @@ func _unhandled_input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	state_machine.process_frame(delta)
 
-func entered_transform_area() -> void:
-	can_transform = true
+func entered_transform_area(element: String) -> void:
+	can_transform_to = element
+	if Transform_State.keys().has(can_transform_to):
+		can_transform = true
+	else:
+		printerr(can_transform_to + " is incorrect transform state string")
+		can_transform_to = "BASE"
 
 func exited_transform_area() -> void:
 	can_transform = false
+	can_transform_to = "BASE"
 
-func transform(to_state: Transform_State) -> void:
-	if to_state == current_transform_state:
+func transform() -> void:
+	var key_names: Array = Transform_State.keys()
+	if key_names.find(can_transform_to) == current_transform_state:
 		return
 
 	reset_collision_mask_layers()
 
-	match to_state:
+	match key_names.find(can_transform_to):
 		Transform_State.EARTH:
 			sprite_node.texture = earth_sprites
 			set_collision_mask_value(EARTH_MASK_BIT, true)
-			# can_transform = false
 			current_transform_state = Transform_State.EARTH
+			can_transform_to = "BASE"
 			d_update_transform_label(Transform_State.keys()[current_transform_state])
 		Transform_State.WIND:
 			sprite_node.texture = wind_sprites
 			set_collision_mask_value(WIND_MASK_BIT, true)
-			# can_transform = false
 			current_transform_state = Transform_State.WIND
+			can_transform_to = "BASE"
 			d_update_transform_label(Transform_State.keys()[current_transform_state])
 		Transform_State.WATER:
 			sprite_node.texture = water_sprites
 			set_collision_mask_value(WATER_MASK_BIT, true)
-			# can_transform = false
 			current_transform_state = Transform_State.WATER
+			can_transform_to = "BASE"
 			d_update_transform_label(Transform_State.keys()[current_transform_state])
 		Transform_State.FIRE:
 			sprite_node.texture = fire_sprites
 			set_collision_mask_value(FIRE_MASK_BIT, true)
-			# can_transform = false
 			current_transform_state = Transform_State.FIRE
+			can_transform_to = "BASE"
 			d_update_transform_label(Transform_State.keys()[current_transform_state])
 		Transform_State.BASE:
 			sprite_node.texture = base_sprites

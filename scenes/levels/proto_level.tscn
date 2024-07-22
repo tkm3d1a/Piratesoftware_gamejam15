@@ -10,7 +10,7 @@ size = Vector2(5688, 20)
 
 [node name="ProtoLevel" type="Node2D" node_paths=PackedStringArray("transform_areas")]
 script = ExtResource("1_ym05u")
-transform_areas = [NodePath("TransformAreas/BaseTransformZone")]
+transform_areas = [NodePath("TransformAreas/Earth_Transform_area")]
 
 [node name="Platforms" type="Node" parent="."]
 
@@ -20,14 +20,14 @@ layer_0/tile_data = PackedInt32Array(2097180, 0, 0, 2097181, 65536, 0, 2097182, 
 
 [node name="TransformAreas" type="Node" parent="."]
 
-[node name="BaseTransformZone" parent="TransformAreas" instance=ExtResource("3_7gadf")]
+[node name="Earth_Transform_area" parent="TransformAreas" instance=ExtResource("3_7gadf")]
 position = Vector2(814, 345)
+transform_area_type = "earth"
 
 [node name="Player" parent="." instance=ExtResource("1_oy1e0")]
 z_index = 4
 y_sort_enabled = true
 position = Vector2(561, 469)
-can_transform = false
 
 [node name="DeathZone" type="Area2D" parent="."]
 position = Vector2(820, 1159)

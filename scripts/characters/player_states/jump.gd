@@ -37,19 +37,11 @@ func process_frame(_delta: float) -> State:
 
 func process_input(_event: InputEvent) -> State:
 	if parent.can_transform:
-		if Input.is_action_just_pressed("transform_earth"):
-			parent.transform(parent.Transform_State.EARTH)
-		
-		if Input.is_action_just_pressed("transform_wind"):
-			parent.transform(parent.Transform_State.WIND)
-
-		if Input.is_action_just_pressed("transform_water"):
-			parent.transform(parent.Transform_State.WATER)
-
-		if Input.is_action_just_pressed("transform_fire"):
-			parent.transform(parent.Transform_State.FIRE)
+		if Input.is_action_just_pressed("transform_element"):
+			parent.transform()
 	
 	if Input.is_action_just_pressed("transform_base"):
-		parent.transform(parent.Transform_State.BASE)
+		parent.can_transform_to = "BASE"
+		parent.transform()
 	
 	return null

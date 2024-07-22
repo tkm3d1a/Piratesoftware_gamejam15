@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ct45hv4jfqgfc"]
+[gd_scene load_steps=5 format=3 uid="uid://ct45hv4jfqgfc"]
 
 [ext_resource type="PackedScene" uid="uid://3cu26nxjbvp0" path="res://scenes/general/base_element_map.tscn" id="1_5v02t"]
 [ext_resource type="Script" path="res://scripts/levels/level_01.gd" id="1_kykmy"]
+[ext_resource type="PackedScene" uid="uid://c0b031r72swqv" path="res://scenes/levels/components/base_transform_zone.tscn" id="3_5o8gp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m4w12"]
 size = Vector2(5688, 20)
@@ -23,3 +24,19 @@ collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone"]
 shape = SubResource("RectangleShape2D_m4w12")
+
+[node name="WaterTransformZone" parent="." instance=ExtResource("3_5o8gp")]
+position = Vector2(-853, 794)
+transform_area_type = "water"
+
+[node name="EarthTransformZone" parent="." instance=ExtResource("3_5o8gp")]
+position = Vector2(-440, 501)
+transform_area_type = "earth"
+
+[node name="WindTransformZone" parent="." instance=ExtResource("3_5o8gp")]
+position = Vector2(-1648, 666)
+transform_area_type = "wind"
+
+[node name="FireTransformZone" parent="." instance=ExtResource("3_5o8gp")]
+position = Vector2(-225, 811)
+transform_area_type = "fire"

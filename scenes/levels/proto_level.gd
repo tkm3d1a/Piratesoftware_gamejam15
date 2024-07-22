@@ -18,8 +18,8 @@ func _ready() -> void:
 
     $DeathZone.connect("body_entered", _on_deathzone_entered)
 
-func _on_transform_area_entered() -> void:
-    player.entered_transform_area()
+func _on_transform_area_entered(element: String) -> void:
+    player.entered_transform_area(element)
 
 func _on_transform_area_exited() -> void:
     player.exited_transform_area()
